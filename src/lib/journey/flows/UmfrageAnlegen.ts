@@ -94,8 +94,9 @@ export function useUmfrageAnlegenFlow(options: UmfrageAnlegenFlowOptions = {}) {
     messages: only(options.messages as Record<string, string> | undefined, ["termin"]),
   });
   const forms: UmfrageAnlegenForms = { umfragen, terminvorschlaege };
+  // the editor of a list is not a record of its own: the review and the success
+  // page read the entries (PlanStep.review), never the half-filled editor
   const formList: StepForm[] = [umfragen, terminvorschlaege];
-
   // The owner's rules after the build (intent-policies.json): a fixed value
   // for a field this flow sets itself, a narrower or wider pick — read at
   // render time, so a change works on the running application.

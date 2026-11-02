@@ -81,7 +81,9 @@ export function SummaryStep({
   });
   // Page `items` refine, never double: an item covering a form field's keys
   // (or its label in the same step) replaces that form row.
-  const rows: SummaryItem[] = mergeSummaryRows([...targetRows, ...forms.flatMap(answered)], items);
+  // entries of a list (several records of one entity): their rows come from the plan step, not from a form
+  const listRows: SummaryItem[] = submit.plan.flatMap(s => s.review?.() ?? []);
+  const rows: SummaryItem[] = mergeSummaryRows([...targetRows, ...forms.flatMap(answered), ...listRows], items);
   const groups = new Map<number | undefined, SummaryItem[]>();
   for (const row of rows) {
     const list = groups.get(row.step) ?? [];

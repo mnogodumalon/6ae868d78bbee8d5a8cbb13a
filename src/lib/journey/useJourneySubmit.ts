@@ -56,6 +56,11 @@ export interface PlanStep {
    *  policy) as review rows with the link that changes them — shown under
    *  "Setzt der Ablauf", so nobody wonders where the status came from. */
   settings?: () => SummaryItem[];
+  /** The answers of a step that has no form of its own — one entry of a list
+   *  the flow creates several records from („1. Termin: 5.11., 14:00“). The
+   *  review shows them among the answers, the success page among the facts;
+   *  `step` on a row is where „Ändern“ leads. */
+  review?: () => SummaryItem[];
   /** The planner's minor assumptions that first ACT in this flow (the invoice
    *  number on the first invoice). The review shows each once — „Passt“ marks it
    *  seen on the plan, „ändern“ leads to its line on „Deine Anwendung“. */

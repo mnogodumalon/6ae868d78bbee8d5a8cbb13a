@@ -96,8 +96,9 @@ export function useTeilnehmerEinladenFlow(options: TeilnehmerEinladenFlowOptions
     messages: only(options.messages as Record<string, string> | undefined, ["email", "hinweis", "umfrage", "vorname", "nachname"]),
   });
   const forms: TeilnehmerEinladenForms = { teilnehmer };
+  // the editor of a list is not a record of its own: the review and the success
+  // page read the entries (PlanStep.review), never the half-filled editor
   const formList: StepForm[] = [teilnehmer];
-
   // The owner's rules after the build (intent-policies.json): a fixed value
   // for a field this flow sets itself, a narrower or wider pick — read at
   // render time, so a change works on the running application.

@@ -52,21 +52,21 @@ There is NO `@/config/appIds`, no `@/config/lookupOptions` and no
 createRecordUrl from the service. Note the lowercase `l` in the service path.
 
 - Umfragen (umfragen): gewaehlter_termin[applookup/select], titel!^[string/text], beschreibung^[string/textarea], status!^[lookup/radio: offen|abgeschlossen], antwortfrist^[date/datetimeminute], dauer_minuten^[number] "Dauer in Minuten", ort[string/text]
-  ≡ 1 records at build time
+  ≡ 2 records at build time
   · antwortfrist: A specific moment in time consisting of year, month, day, hour and minute (or `null`/`None`) The field value will be a string in the format `<YYYY>-<MM>-<DD>T<HH>:<MM>` (or `null`/`None`). For example: `2000-02-29T11:30`. For `POST`/`PUT`/`PATCH` requests the REST API uses a liberal parsing approach so that strings like `2026`, `February 29, 2000 12:34 MEST`, `letztes Jahr` etc. will be accepted as value datetime values. However this runs the risk of parsing ambiguous values incorrectly. To ensure reliable parsing it is best to use the canonical format specified above.
   ◈ status → choice (2 options, ChoiceGroup) · gewaehlter_termin → record (terminvorschlaege, EntitySelectStep)
   ⚙ getUmfragen() · getUmfragenEntry(id) · createUmfragenEntry(fields) · updateUmfragenEntry(id, fields) · deleteUmfragenEntry(id) · queryUmfragen({ filter, orderby, limit, offset, fields }) · countUmfragen(filter?)
   ✚ EnrichedUmfragen adds ONLY gewaehlter_terminName — via enrichUmfragen(umfragen, { terminvorschlaegeMap }), all maps required
   → gewaehlter_termin links to app_id 6ae868c45c4c5d3022bc5f01
 - Terminvorschläge (terminvorschlaege): umfrage!^[applookup/select], termin!^[date/datetimeminute] "Datum und Uhrzeit"
-  ≡ 3 records at build time
+  ≡ 5 records at build time
   · termin: A specific moment in time consisting of year, month, day, hour and minute (or `null`/`None`) The field value will be a string in the format `<YYYY>-<MM>-<DD>T<HH>:<MM>` (or `null`/`None`). For example: `2000-02-29T11:30`. For `POST`/`PUT`/`PATCH` requests the REST API uses a liberal parsing approach so that strings like `2026`, `February 29, 2000 12:34 MEST`, `letztes Jahr` etc. will be accepted as value datetime values. However this runs the risk of parsing ambiguous values incorrectly. To ensure reliable parsing it is best to use the canonical format specified above.
   ◈ umfrage → record (umfragen, EntitySelectStep)
   ⚙ getTerminvorschlaege() · getTerminvorschlaegeEntry(id) · createTerminvorschlaegeEntry(fields) · updateTerminvorschlaegeEntry(id, fields) · deleteTerminvorschlaegeEntry(id) · queryTerminvorschlaege({ filter, orderby, limit, offset, fields }) · countTerminvorschlaege(filter?)
   ✚ EnrichedTerminvorschlaege adds ONLY umfrageName — via enrichTerminvorschlaege(terminvorschlaege, { umfragenMap }), all maps required
   → umfrage links to app_id 6ae868c03fb35a5bfa53cbb4
 - Teilnehmer (teilnehmer): vorname!^[string/text], nachname!^[string/text], email!^[string/email] "E-Mail", hinweis^[string/text], eingeladen_am[date/datetimeminute], letzte_erinnerung[date/datetimeminute] "Letzte Erinnerung am", persoenlicher_token[string/text] "Persönlicher Link-Token", umfrage!^[applookup/select]
-  ≡ 6 records at build time
+  ≡ 7 records at build time
   · eingeladen_am: A specific moment in time consisting of year, month, day, hour and minute (or `null`/`None`) The field value will be a string in the format `<YYYY>-<MM>-<DD>T<HH>:<MM>` (or `null`/`None`). For example: `2000-02-29T11:30`. For `POST`/`PUT`/`PATCH` requests the REST API uses a liberal parsing approach so that strings like `2026`, `February 29, 2000 12:34 MEST`, `letztes Jahr` etc. will be accepted as value datetime values. However this runs the risk of parsing ambiguous values incorrectly. To ensure reliable parsing it is best to use the canonical format specified above.
   · letzte_erinnerung: A specific moment in time consisting of year, month, day, hour and minute (or `null`/`None`) The field value will be a string in the format `<YYYY>-<MM>-<DD>T<HH>:<MM>` (or `null`/`None`). For example: `2000-02-29T11:30`. For `POST`/`PUT`/`PATCH` requests the REST API uses a liberal parsing approach so that strings like `2026`, `February 29, 2000 12:34 MEST`, `letztes Jahr` etc. will be accepted as value datetime values. However this runs the risk of parsing ambiguous values incorrectly. To ensure reliable parsing it is best to use the canonical format specified above.
   ◈ umfrage → record (umfragen, EntitySelectStep)
@@ -74,7 +74,6 @@ createRecordUrl from the service. Note the lowercase `l` in the service path.
   ✚ EnrichedTeilnehmer adds ONLY umfrageName — via enrichTeilnehmer(teilnehmer, { umfragenMap }), all maps required
   → umfrage links to app_id 6ae868c03fb35a5bfa53cbb4
 - Antworten (antworten): antwort!^[lookup/radio: ja|vielleicht|nein], teilnehmer!^[applookup/select], terminvorschlag!^[applookup/select]
-  ≡ 3 records at build time
   ◈ antwort → choice (3 options, ChoiceGroup) · teilnehmer → record (teilnehmer, EntitySelectStep) · terminvorschlag → record (terminvorschlaege, EntitySelectStep)
   ⚙ getAntworten() · getAntwortenEntry(id) · createAntwortenEntry(fields) · updateAntwortenEntry(id, fields) · deleteAntwortenEntry(id) · queryAntworten({ filter, orderby, limit, offset, fields }) · countAntworten(filter?)
   ✚ EnrichedAntworten adds ONLY teilnehmerName, terminvorschlagName — via enrichAntworten(antworten, { teilnehmerMap, terminvorschlaegeMap }), all maps required

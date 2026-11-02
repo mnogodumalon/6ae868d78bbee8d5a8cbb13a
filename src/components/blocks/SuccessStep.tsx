@@ -98,7 +98,8 @@ export function SuccessStep({
   // step showed — an update-only journey keeps its answers in page state, so
   // without this the success screen was a heading over nothing (live: ticket
   // assignment). The review remembers its rows on confirm; the result carries them.
-  const formRows = forms.flatMap(f => f.summary()).filter(r => r.value !== '—');
+  const listRows = (submit?.plan ?? []).flatMap(s => s.review?.() ?? []);
+  const formRows = [...forms.flatMap(f => f.summary()), ...listRows].filter(r => r.value !== '—');
   const rows = (facts ?? (formRows.length > 0 ? formRows : (result.summary ?? []).filter(r => r.value !== '—'))).slice(0, 10);
 
   const copy = async () => {
