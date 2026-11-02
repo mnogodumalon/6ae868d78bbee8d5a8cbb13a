@@ -14,6 +14,11 @@ import { IntentPolicyLoader } from '@/components/IntentPolicyLoader';
 import IntentsAdmin from '@/pages/IntentsAdmin';
 import AppMap from '@/pages/AppMap';
 // <custom:imports>
+const IntentUmfrageAnlegenPage = lazy(() => import('@/pages/intents/UmfrageAnlegenPage'));
+import { DashboardSkeleton } from '@/components/DashboardStates';
+const IntentTeilnehmerEinladenPage = lazy(() => import('@/pages/intents/TeilnehmerEinladenPage'));
+const IntentAntwortenErfassenPage = lazy(() => import('@/pages/intents/AntwortenErfassenPage'));
+const IntentTerminFestlegenPage = lazy(() => import('@/pages/intents/TerminFestlegenPage'));
 // </custom:imports>
 
 // Lazy: public pages live outside <Layout> and only load on /#/public/:slug —
@@ -85,6 +90,10 @@ export default function App() {
                 <Route path="verwaltung/oeffentliche-seiten" element={<PublicPagesAdmin />} />
                 <Route path="verwaltung/oeffentliche-seiten/:slug/felder" element={<PublicPageFields />} />
                 {/* <custom:routes> */}
+                <Route path="intents/umfrage-anlegen" element={<Suspense fallback={<DashboardSkeleton />}><IntentUmfrageAnlegenPage /></Suspense>} />
+                <Route path="intents/teilnehmer-einladen" element={<Suspense fallback={<DashboardSkeleton />}><IntentTeilnehmerEinladenPage /></Suspense>} />
+                <Route path="intents/antworten-erfassen" element={<Suspense fallback={<DashboardSkeleton />}><IntentAntwortenErfassenPage /></Suspense>} />
+                <Route path="intents/termin-festlegen" element={<Suspense fallback={<DashboardSkeleton />}><IntentTerminFestlegenPage /></Suspense>} />
                 {/* </custom:routes> */}
                 {/* An unknown hash (a bookmark from before a rebuild renamed the
                     flows, a mistyped link) must not be a blank page. */}
