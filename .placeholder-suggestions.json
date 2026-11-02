@@ -1,0 +1,28 @@
+{
+  "UmfragenDialog.tsx": {
+    "gewaehlter_termin": "Welcher Termin wurde gewählt?",
+    "titel": "z. B. Teamessen im Mai",
+    "beschreibung": "Worum geht es bei der Umfrage?",
+    "antwortfrist": "Bis wann antworten?",
+    "dauer_minuten": "z. B. 60",
+    "ort": "z. B. Besprechungsraum 2"
+  },
+  "TerminvorschlaegeDialog.tsx": {
+    "umfrage": "Welche Umfrage?",
+    "termin": "Wann findet der Termin statt?"
+  },
+  "TeilnehmerDialog.tsx": {
+    "vorname": "z. B. Anna",
+    "nachname": "z. B. Müller",
+    "email": "z. B. anna@beispiel.de",
+    "hinweis": "z. B. Kommt später",
+    "eingeladen_am": "Wann wurde eingeladen?",
+    "letzte_erinnerung": "Wann war die Erinnerung?",
+    "persoenlicher_token": "z. B. a7f3k9",
+    "umfrage": "Welche Umfrage?"
+  },
+  "AntwortenDialog.tsx": {
+    "teilnehmer": "Wer antwortet?",
+    "terminvorschlag": "Welcher Terminvorschlag?"
+  }
+}

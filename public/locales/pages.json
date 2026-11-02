@@ -1,0 +1,42 @@
+{
+  "pages": {
+    "en": {
+      "Abgeschlossen": "Completed",
+      "Abschließen": "Finalize",
+      "Alle Teilnehmer haben geantwortet.": "All participants have responded.",
+      "Antwortfrist": "Response deadline",
+      "Antwortquote": "Response rate",
+      "Beste Option": "Best option",
+      "Erste Umfrage anlegen": "Create first poll",
+      "Frist ≤ {0} Tage": "Deadline ≤ {0} days",
+      "Gewählt": "Selected",
+      "Kein Termin gewählt": "No date selected",
+      "Keine Antwort": "No response",
+      "Keine Umfrage mit baldiger Frist.": "No polls with an upcoming deadline.",
+      "Keine offene Umfrage mit Antwortfrist.": "No open polls with a response deadline.",
+      "Lege deine erste Umfrage an und finde einen Termin für alle.": "Create your first poll and find a date for everyone.",
+      "Neue Umfrage": "New poll",
+      "Noch keine Antwort": "No response yet",
+      "Noch keine Teilnehmer eingeladen.": "No participants invited yet.",
+      "Noch keine Terminvorschläge.": "No date proposals yet.",
+      "Noch keine Umfrage abgeschlossen.": "No polls completed yet.",
+      "Ohne Antwort": "No response",
+      "Schlage mehrere Termine vor, lade Teilnehmer ein und wähle am Ende den besten Termin.": "Propose several dates, invite participants, and pick the best date in the end.",
+      "Termin festlegen": "Set date",
+      "Terminvorschlag": "Date proposal",
+      "heute fällig": "due today",
+      "in {0} Tagen fällig": "due in {0} days",
+      "morgen fällig": "due tomorrow",
+      "ohne Frist": "no deadline",
+      "seit {0} Tagen überfällig": "overdue by {0} days",
+      "{0} haben noch nicht geantwortet.": "{0} have not responded yet.",
+      "{0} von {1} offen": "{0} of {1} open",
+      "{0} — Antwortfrist abgelaufen, Termin festlegen.": "{0} — response deadline passed, set date.",
+      "{0} — Frist läuft bald ab.": "{0} — deadline approaching.",
+      "{0} — alle Antworten im Zeitplan.": "{0} — all responses on schedule.",
+      "{0} — alles abgeschlossen.": "{0} — all done.",
+      "— Antwortfrist abgelaufen. Zeit, einen Termin zu wählen.": "— response deadline passed. Time to pick a date."
+    }
+  },
+  "v": 1
+}

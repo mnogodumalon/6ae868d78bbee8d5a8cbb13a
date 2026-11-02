@@ -1,0 +1,59 @@
+import type { Antworten, Teilnehmer, Terminvorschlaege } from '@/types/app';
+import { APP_IDS } from '@/types/app';
+import { extractRecordId } from '@/services/livingAppsService';
+import {
+  RecordSection, RecordField, RecordRelation, RecordAttachments,
+} from '@/components/widgets/RecordView';
+import { t, appLabel, fieldLabel } from '@/i18n';
+import { usePermissions } from '@/lib/permissions';
+
+export interface AntwortenDetailsProps {
+  /** Der Record — enriched oder roh; alle Felder werden hier gerendert. */
+  record: Antworten;
+  /** N:1-Ziel „Teilnehmer": volle Liste (Hook-Array) — der Block löst Name + Schlüsselfelder selbst auf. */
+  teilnehmerList: Teilnehmer[];
+  /** Klick auf die Teilnehmer-Relation → overlay.push auf dessen Detail. */
+  onOpenTeilnehmer?: (record: Teilnehmer) => void;
+  /** N:1-Ziel „Terminvorschlaege": volle Liste (Hook-Array) — der Block löst Name + Schlüsselfelder selbst auf. */
+  terminvorschlaegeList: Terminvorschlaege[];
+  /** Klick auf die Terminvorschlaege-Relation → overlay.push auf dessen Detail. */
+  onOpenTerminvorschlaege?: (record: Terminvorschlaege) => void;
+}
+
+export function AntwortenDetails({
+  record,
+  teilnehmerList,
+  onOpenTeilnehmer,
+  terminvorschlaegeList,
+  onOpenTerminvorschlaege,
+}: AntwortenDetailsProps) {
+  // attachments are a write to this record — read-only without the platform right
+  const perms = usePermissions();
+  const teilnehmerTarget = teilnehmerList.find(r => r.record_id === extractRecordId(record.fields.teilnehmer));
+  const terminvorschlagTarget = terminvorschlaegeList.find(r => r.record_id === extractRecordId(record.fields.terminvorschlag));
+  return (
+    <>
+      <RecordSection title={t('details')} cols={2}>
+        <RecordField label={fieldLabel('antworten', 'antwort')} value={record.fields.antwort} format="pill" />
+      </RecordSection>
+
+      {/* N:1 — verknüpfte Records: IMMER klickbar, nie eine Text-Sackgasse. */}
+      <RecordSection title={t('relations')} cols={2}>
+        <RecordRelation
+          label={fieldLabel('antworten', 'teilnehmer')}
+          name={teilnehmerTarget?.fields.vorname ?? '—'}
+          meta={[teilnehmerTarget?.fields.email].filter(Boolean).join(' · ') || undefined}
+          onClick={teilnehmerTarget && onOpenTeilnehmer ? () => onOpenTeilnehmer!(teilnehmerTarget!) : undefined}
+        />
+        <RecordRelation
+          label={fieldLabel('antworten', 'terminvorschlag')}
+          name={terminvorschlagTarget?.fields.umfrage ?? '—'}
+          meta={undefined}
+          onClick={terminvorschlagTarget && onOpenTerminvorschlaege ? () => onOpenTerminvorschlaege!(terminvorschlagTarget!) : undefined}
+        />
+      </RecordSection>
+
+      <RecordAttachments appId={APP_IDS.ANTWORTEN} recordId={record.record_id} readOnly={!perms.canWrite('antworten')} />
+    </>
+  );
+}
