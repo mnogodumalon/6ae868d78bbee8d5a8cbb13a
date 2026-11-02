@@ -43,10 +43,10 @@ export interface IntentLink {
 
 export const INTENTS: IntentLink[] = [
   // <custom:intents>
-  { path: '/intents/umfrage-anlegen', label: { de: 'Umfrage mit Terminen anlegen', en: 'Create poll with dates' }, icon: IconCalendarPlus, description: 'Eine neue Umfrage mit mehreren Terminvorschlägen in einem Zug anlegen.' },
-  { path: '/intents/teilnehmer-einladen', label: { de: 'Teilnehmer einladen', en: 'Invite participants' }, icon: IconUserPlus, description: 'Eine offene Umfrage wählen und mehrere Teilnehmer dazu erfassen.' },
-  { path: '/intents/antworten-erfassen', label: { de: 'Antworten erfassen', en: 'Record answers' }, icon: IconListCheck, description: 'Für einen Teilnehmer zu jedem Terminvorschlag der Umfrage Ja, Vielleicht oder Nein eintragen.' },
-  { path: '/intents/termin-festlegen', label: { de: 'Termin festlegen und abschließen', en: 'Choose date and close' }, icon: IconCalendarCheck, description: 'Ergebnisse je Terminvorschlag vergleichen, den Termin wählen und die Umfrage abschließen.' },
+  { path: '/intents/umfrage-anlegen', label: { de: 'Umfrage mit Terminen anlegen', en: 'Create poll with dates' }, icon: IconCalendarPlus, description: { de: 'Eine neue Umfrage mit mehreren Terminvorschlägen in einem Zug anlegen.', en: 'Create a new poll with multiple proposed dates in one step.' } },
+  { path: '/intents/teilnehmer-einladen', label: { de: 'Teilnehmer einladen', en: 'Invite participants' }, icon: IconUserPlus, description: { de: 'Eine offene Umfrage wählen und mehrere Teilnehmer dazu erfassen.', en: 'Select an open poll and add multiple participants to it.' } },
+  { path: '/intents/antworten-erfassen', label: { de: 'Antworten erfassen', en: 'Record answers' }, icon: IconListCheck, description: { de: 'Für einen Teilnehmer zu jedem Terminvorschlag der Umfrage Ja, Vielleicht oder Nein eintragen.', en: 'For a participant, enter Yes, Maybe, or No for each proposed date in the poll.' } },
+  { path: '/intents/termin-festlegen', label: { de: 'Termin festlegen und abschließen', en: 'Choose date and close' }, icon: IconCalendarCheck, description: { de: 'Ergebnisse je Terminvorschlag vergleichen, den Termin wählen und die Umfrage abschließen.', en: 'Compare results per proposed date, select the date, and close the poll.' } },
   // </custom:intents>
 ];
 
@@ -66,5 +66,5 @@ export const INTENTS_PENDING = false;
  * pulsing "werden erstellt …" in every deployed Phase-1 bundle forever — no
  * code path redeploys Phase 1 without the flag (live 03.09.2026).
  */
-export const INTENTS_PENDING_SINCE: string | null = '2026-11-02T10:42:27+00:00';
+export const INTENTS_PENDING_SINCE: string | null = null;
 export const PENDING_MAX_MINUTES = 30;

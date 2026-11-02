@@ -1,7 +1,7 @@
 /**
  * useUmfrageAnlegenFlow — the plumbing of the flow « Umfrage mit Terminen anlegen », generated from the plan.
  *
- * Writes `umfragen`: asks `titel`, `beschreibung`, `ort`, `dauer_minuten`, `antwortfrist`; sets `status` itself.
+ * Writes `umfragen`: asks `ort`, `titel`, `antwortfrist`, `beschreibung`, `dauer_minuten`; sets `status` itself.
 Writes `terminvorschlaege`: asks `termin`; links `umfrage` ← the created `umfragen`.
  * The hook OWNS: the form(s) with exactly these fields and the plan's required
  * ingredients, one record search per picked field (columns and filter from
@@ -17,14 +17,14 @@ Writes `terminvorschlaege`: asks `termin`; links `umfrage` ← the created `umfr
  *   messages  the sentence for an empty required field, per field
  *
  *   const flow = useUmfrageAnlegenFlow({
- *     steps: { titel: 1, beschreibung: 1, ort: 1, dauer_minuten: 1, antwortfrist: 1, termin: 1 },
+ *     steps: { ort: 1, titel: 1, antwortfrist: 1, beschreibung: 1, dauer_minuten: 1, termin: 1 },
  *   });
  *   <IntentWizardShell forms={flow.forms} draftKey={flow.draftKey} …>
- *     <Bound form={flow.forms.umfragen} name="titel" />
- *     <Bound form={flow.forms.umfragen} name="beschreibung" />
  *     <Bound form={flow.forms.umfragen} name="ort" />
- *     <Bound form={flow.forms.umfragen} name="dauer_minuten" />
+ *     <Bound form={flow.forms.umfragen} name="titel" />
  *     <Bound form={flow.forms.umfragen} name="antwortfrist" />
+ *     <Bound form={flow.forms.umfragen} name="beschreibung" />
+ *     <Bound form={flow.forms.umfragen} name="dauer_minuten" />
  *     <Bound form={flow.forms.terminvorschlaege} name="termin" />
  *     <StepNav onNext={() => flow.validateStep(n)} />
  *     {!flow.submit.done && <SummaryStep forms={flow.formList} submit={flow.submit} />}
@@ -82,10 +82,10 @@ function hasValues(form: StepForm): boolean {
 export function useUmfrageAnlegenFlow(options: UmfrageAnlegenFlowOptions = {}) {
   const steps = { ...DEFAULT_STEPS, ...(options.steps ?? {}) } as Record<string, number>;
   const umfragen = useStepForm('umfragen', {
-    fields: ["titel", "beschreibung", "ort", "dauer_minuten", "antwortfrist"],
-    steps: only(steps, ["titel", "beschreibung", "ort", "dauer_minuten", "antwortfrist"]) as Record<string, number>,
-    initial: only(options.initial as FormValues | undefined, ["titel", "beschreibung", "ort", "dauer_minuten", "antwortfrist"]),
-    messages: only(options.messages as Record<string, string> | undefined, ["titel", "beschreibung", "ort", "dauer_minuten", "antwortfrist"]),
+    fields: ["ort", "titel", "antwortfrist", "beschreibung", "dauer_minuten"],
+    steps: only(steps, ["ort", "titel", "antwortfrist", "beschreibung", "dauer_minuten"]) as Record<string, number>,
+    initial: only(options.initial as FormValues | undefined, ["ort", "titel", "antwortfrist", "beschreibung", "dauer_minuten"]),
+    messages: only(options.messages as Record<string, string> | undefined, ["ort", "titel", "antwortfrist", "beschreibung", "dauer_minuten"]),
   });
   const terminvorschlaege = useStepForm('terminvorschlaege', {
     fields: ["termin"],

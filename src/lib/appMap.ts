@@ -42,7 +42,7 @@ export interface LineEditable {
   entity?: string;
 }
 
-export type GroupKind = 'setup' | 'gaps' | 'create' | 'update' | 'schedule' | 'manual' | 'dashboard' | 'pages' | 'roles' | 'limits' | 'platform';
+export type GroupKind = 'understanding' | 'setup' | 'gaps' | 'create' | 'update' | 'schedule' | 'manual' | 'dashboard' | 'pages' | 'roles' | 'limits' | 'platform';
 
 /** A block of the page, in display order. Empty groups are not sent. */
 export interface MapGroup {

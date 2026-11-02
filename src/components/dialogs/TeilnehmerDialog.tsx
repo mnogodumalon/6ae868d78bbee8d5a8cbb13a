@@ -339,7 +339,7 @@ export function TeilnehmerDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="vorname">{fieldLabel('teilnehmer', 'vorname')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Input
           id="vorname"
-          placeholder="z. B. Anna"
+          placeholder=""
           value={fields.vorname ?? ''}
           onChange={e => setFields(f => ({ ...f, vorname: e.target.value }))}
           required
@@ -354,7 +354,7 @@ export function TeilnehmerDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="nachname">{fieldLabel('teilnehmer', 'nachname')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Input
           id="nachname"
-          placeholder="z. B. Müller"
+          placeholder=""
           value={fields.nachname ?? ''}
           onChange={e => setFields(f => ({ ...f, nachname: e.target.value }))}
           required
@@ -371,7 +371,7 @@ export function TeilnehmerDialog({ open, onClose, onSubmit, defaultValues, recor
           id="email"
           type="email"
           inputMode="email"
-          placeholder="z. B. anna@beispiel.de"
+          placeholder=""
           value={fields.email ?? ''}
           onChange={e => setFields(f => ({ ...f, email: e.target.value }))}
           required
@@ -386,7 +386,7 @@ export function TeilnehmerDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="hinweis">{fieldLabel('teilnehmer', 'hinweis')}</Label>
         <Input
           id="hinweis"
-          placeholder="z. B. Kommt später"
+          placeholder=""
           value={fields.hinweis ?? ''}
           onChange={e => setFields(f => ({ ...f, hinweis: e.target.value }))}
         />
@@ -397,7 +397,7 @@ export function TeilnehmerDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="eingeladen_am">{fieldLabel('teilnehmer', 'eingeladen_am')}</Label>
         <DatePicker
           id="eingeladen_am"
-          placeholder="Wann wurde eingeladen?"
+          placeholder=""
           mode="datetime"
           value={fields.eingeladen_am ?? null}
           onChange={v => setFields(f => ({ ...f, eingeladen_am: v ?? undefined }))}
@@ -409,7 +409,7 @@ export function TeilnehmerDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="letzte_erinnerung">{fieldLabel('teilnehmer', 'letzte_erinnerung')}</Label>
         <DatePicker
           id="letzte_erinnerung"
-          placeholder="Wann war die Erinnerung?"
+          placeholder=""
           mode="datetime"
           value={fields.letzte_erinnerung ?? null}
           onChange={v => setFields(f => ({ ...f, letzte_erinnerung: v ?? undefined }))}
@@ -421,7 +421,7 @@ export function TeilnehmerDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="persoenlicher_token">{fieldLabel('teilnehmer', 'persoenlicher_token')}</Label>
         <Input
           id="persoenlicher_token"
-          placeholder="z. B. a7f3k9"
+          placeholder=""
           value={fields.persoenlicher_token ?? ''}
           onChange={e => setFields(f => ({ ...f, persoenlicher_token: e.target.value }))}
         />
@@ -432,7 +432,7 @@ export function TeilnehmerDialog({ open, onClose, onSubmit, defaultValues, recor
         <Label htmlFor="umfrage">{fieldLabel('teilnehmer', 'umfrage')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Combobox
           id="umfrage"
-          placeholder="Welche Umfrage?"
+          placeholder=""
           items={umfragenListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.titel ?? r.record_id),

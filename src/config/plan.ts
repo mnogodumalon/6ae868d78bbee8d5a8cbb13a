@@ -67,15 +67,15 @@ export interface FlowOwner { slug: string; value?: string }
  *  (check-dashboard gate 25). */
 export const FLOW_OWNED: Record<string, Record<string, FlowOwner[]>> = {
   "umfragen": {
-    "gewaehlter_termin": [
-      {
-        "slug": "termin-festlegen"
-      }
-    ],
     "status": [
       {
         "slug": "termin-festlegen",
         "value": "abgeschlossen"
+      }
+    ],
+    "gewaehlter_termin": [
+      {
+        "slug": "termin-festlegen"
       }
     ]
   }

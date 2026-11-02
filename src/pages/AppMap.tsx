@@ -428,7 +428,7 @@ function MainView({ st, groups, lines, q, setQ, openGroups, setOpenGroups, dismi
               <div className="divide-y divide-border rounded-2xl border border-border bg-card">
                 {ls.map((l, i) => {
                   const firstOfTool = l.about.kind === 'tool' && ls.findIndex(o => o.about.kind === 'tool' && o.about.id === l.about.id) === i;
-                  return <LineRow key={l.id} line={l} more={firstOfTool && g.kind !== 'roles' && g.kind !== 'limits' && g.kind !== 'platform' && g.kind !== 'gaps'} flowLink />;
+                  return <LineRow key={l.id} line={l} more={firstOfTool && g.kind !== 'roles' && g.kind !== 'limits' && g.kind !== 'platform' && g.kind !== 'gaps' && g.kind !== 'understanding'} flowLink />;
                 })}
               </div>
             )}

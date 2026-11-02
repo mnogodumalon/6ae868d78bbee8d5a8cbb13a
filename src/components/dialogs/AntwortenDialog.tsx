@@ -426,7 +426,7 @@ export function AntwortenDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="teilnehmer">{fieldLabel('antworten', 'teilnehmer')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Combobox
           id="teilnehmer"
-          placeholder="Wer antwortet?"
+          placeholder=""
           items={teilnehmerListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.vorname ?? r.record_id),
@@ -446,7 +446,7 @@ export function AntwortenDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="terminvorschlag">{fieldLabel('antworten', 'terminvorschlag')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Combobox
           id="terminvorschlag"
-          placeholder="Welcher Terminvorschlag?"
+          placeholder=""
           items={terminvorschlaegeListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.umfrage ?? r.record_id),

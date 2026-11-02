@@ -1,7 +1,7 @@
 /**
  * useAntwortenErfassenFlow — the plumbing of the flow « Antworten erfassen », generated from the plan.
  *
- * Writes `antworten`: asks `teilnehmer`, `terminvorschlag`, `antwort`.
+ * Writes `antworten`: asks `antwort`, `teilnehmer`, `terminvorschlag`.
  * The hook OWNS: the form(s) with exactly these fields and the plan's required
  * ingredients, one record search per picked field (columns and filter from
  * the plan), and the submit plan with its fixed and derived values. A page
@@ -89,10 +89,10 @@ function hasValues(form: StepForm): boolean {
 export function useAntwortenErfassenFlow(options: AntwortenErfassenFlowOptions = {}) {
   const steps = { ...DEFAULT_STEPS, ...(options.steps ?? {}) } as Record<string, number>;
   const antworten = useStepForm('antworten', {
-    fields: ["teilnehmer", "terminvorschlag", "antwort"],
-    steps: only(steps, ["teilnehmer", "terminvorschlag", "antwort"]) as Record<string, number>,
-    initial: only(options.initial as FormValues | undefined, ["teilnehmer", "terminvorschlag", "antwort"]),
-    messages: only(options.messages as Record<string, string> | undefined, ["teilnehmer", "terminvorschlag", "antwort"]),
+    fields: ["antwort", "teilnehmer", "terminvorschlag"],
+    steps: only(steps, ["antwort", "teilnehmer", "terminvorschlag"]) as Record<string, number>,
+    initial: only(options.initial as FormValues | undefined, ["antwort", "teilnehmer", "terminvorschlag"]),
+    messages: only(options.messages as Record<string, string> | undefined, ["antwort", "teilnehmer", "terminvorschlag"]),
   });
   const forms: AntwortenErfassenForms = { antworten };
   const formList: StepForm[] = [antworten];

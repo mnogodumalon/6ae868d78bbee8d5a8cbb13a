@@ -1,7 +1,7 @@
 /**
  * useTeilnehmerEinladenFlow — the plumbing of the flow « Teilnehmer einladen », generated from the plan.
  *
- * Writes `teilnehmer`: asks `umfrage`, `vorname`, `nachname`, `email`, `hinweis`; sets `eingeladen_am` itself.
+ * Writes `teilnehmer`: asks `email`, `hinweis`, `umfrage`, `vorname`, `nachname`; sets `eingeladen_am` itself.
  * The hook OWNS: the form(s) with exactly these fields and the plan's required
  * ingredients, one record search per picked field (columns and filter from
  * the plan), and the submit plan with its fixed and derived values. A page
@@ -16,15 +16,15 @@
  *   messages  the sentence for an empty required field, per field
  *
  *   const flow = useTeilnehmerEinladenFlow({
- *     steps: { umfrage: 1, vorname: 2, nachname: 2, email: 2, hinweis: 2 },
+ *     steps: { umfrage: 1, email: 2, hinweis: 2, vorname: 2, nachname: 2 },
  *     items: { umfrage: r => ({ id: r.id, title: fieldText(r, 'titel') }) },
  *   });
  *   <IntentWizardShell forms={flow.forms} draftKey={flow.draftKey} …>
  *     <EntitySelectStep {...flow.picks.umfrage.select} {...flow.pick('umfrage')} />
- *     <Bound form={flow.forms.teilnehmer} name="vorname" />
- *     <Bound form={flow.forms.teilnehmer} name="nachname" />
  *     <Bound form={flow.forms.teilnehmer} name="email" />
  *     <Bound form={flow.forms.teilnehmer} name="hinweis" />
+ *     <Bound form={flow.forms.teilnehmer} name="vorname" />
+ *     <Bound form={flow.forms.teilnehmer} name="nachname" />
  *     <StepNav onNext={() => flow.validateStep(n)} />
  *     {!flow.submit.done && <SummaryStep forms={flow.formList} submit={flow.submit} />}
  *     {flow.submit.result && <SuccessStep result={flow.submit.result} forms={flow.formList} submit={flow.submit} />}
@@ -90,10 +90,10 @@ function hasValues(form: StepForm): boolean {
 export function useTeilnehmerEinladenFlow(options: TeilnehmerEinladenFlowOptions = {}) {
   const steps = { ...DEFAULT_STEPS, ...(options.steps ?? {}) } as Record<string, number>;
   const teilnehmer = useStepForm('teilnehmer', {
-    fields: ["umfrage", "vorname", "nachname", "email", "hinweis"],
-    steps: only(steps, ["umfrage", "vorname", "nachname", "email", "hinweis"]) as Record<string, number>,
-    initial: only(options.initial as FormValues | undefined, ["umfrage", "vorname", "nachname", "email", "hinweis"]),
-    messages: only(options.messages as Record<string, string> | undefined, ["umfrage", "vorname", "nachname", "email", "hinweis"]),
+    fields: ["email", "hinweis", "umfrage", "vorname", "nachname"],
+    steps: only(steps, ["email", "hinweis", "umfrage", "vorname", "nachname"]) as Record<string, number>,
+    initial: only(options.initial as FormValues | undefined, ["email", "hinweis", "umfrage", "vorname", "nachname"]),
+    messages: only(options.messages as Record<string, string> | undefined, ["email", "hinweis", "umfrage", "vorname", "nachname"]),
   });
   const forms: TeilnehmerEinladenForms = { teilnehmer };
   const formList: StepForm[] = [teilnehmer];

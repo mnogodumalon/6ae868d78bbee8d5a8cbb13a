@@ -350,7 +350,7 @@ export function UmfragenDialog({ open, onClose, onSubmit, defaultValues, recordI
         <Label htmlFor="gewaehlter_termin">{fieldLabel('umfragen', 'gewaehlter_termin')}</Label>
         <Combobox
           id="gewaehlter_termin"
-          placeholder="Welcher Termin wurde gewählt?"
+          placeholder=""
           items={terminvorschlaegeListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.umfrage ?? r.record_id),
@@ -367,7 +367,7 @@ export function UmfragenDialog({ open, onClose, onSubmit, defaultValues, recordI
         <Label htmlFor="titel">{fieldLabel('umfragen', 'titel')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Input
           id="titel"
-          placeholder="z. B. Teamessen im Mai"
+          placeholder=""
           value={fields.titel ?? ''}
           onChange={e => setFields(f => ({ ...f, titel: e.target.value }))}
           required
@@ -382,7 +382,7 @@ export function UmfragenDialog({ open, onClose, onSubmit, defaultValues, recordI
         <Label htmlFor="beschreibung">{fieldLabel('umfragen', 'beschreibung')}</Label>
         <Textarea
           id="beschreibung"
-          placeholder="Worum geht es bei der Umfrage?"
+          placeholder=""
           value={fields.beschreibung ?? ''}
           onChange={e => setFields(f => ({ ...f, beschreibung: e.target.value }))}
           rows={3}
@@ -430,7 +430,7 @@ export function UmfragenDialog({ open, onClose, onSubmit, defaultValues, recordI
         <Label htmlFor="antwortfrist">{fieldLabel('umfragen', 'antwortfrist')}</Label>
         <DatePicker
           id="antwortfrist"
-          placeholder="Bis wann antworten?"
+          placeholder=""
           mode="datetime"
           value={fields.antwortfrist ?? null}
           onChange={v => setFields(f => ({ ...f, antwortfrist: v ?? undefined }))}
@@ -446,7 +446,7 @@ export function UmfragenDialog({ open, onClose, onSubmit, defaultValues, recordI
           inputMode="decimal"
           step="any"
           {...numberInputProps(formEnhancements, 'dauer_minuten')}
-          placeholder="z. B. 60"
+          placeholder=""
           value={fields.dauer_minuten !== undefined ? fields.dauer_minuten : (computedValues['dauer_minuten'] ?? '')}
           onChange={e => setFields(f => ({ ...f, dauer_minuten: clampNumberValue(formEnhancements, 'dauer_minuten', e.target.value) }))}
         />
@@ -457,7 +457,7 @@ export function UmfragenDialog({ open, onClose, onSubmit, defaultValues, recordI
         <Label htmlFor="ort">{fieldLabel('umfragen', 'ort')}</Label>
         <Input
           id="ort"
-          placeholder="z. B. Besprechungsraum 2"
+          placeholder=""
           value={fields.ort ?? ''}
           onChange={e => setFields(f => ({ ...f, ort: e.target.value }))}
         />
